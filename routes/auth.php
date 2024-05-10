@@ -37,5 +37,5 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
 Route::get('/list-users', [AuthenticatedSessionController::class, 'listUsers'])
-                ->middleware('auth')
+//                ->middleware('auth')
                 ->name('list-users');

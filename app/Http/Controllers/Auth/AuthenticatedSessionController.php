@@ -46,7 +46,7 @@ class AuthenticatedSessionController extends Controller
     /**
      * List Users.
      */
-    public function listUsers(): JsonResponse
+    public function listUsers()
     {
         return DB::table('users')
             ->select(['id', 'name', 'email'])
