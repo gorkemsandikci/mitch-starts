@@ -8,6 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -40,5 +41,22 @@ class AuthenticatedSessionController extends Controller
         return response()->json([
             'status' => 'logged out'
         ], 200);
+    }
+
+    /**
+     * List Users.
+     */
+    public function listUsers(): JsonResponse
+    {
+        return DB::table('users')
+            ->select(['id', 'name', 'email'])
+            ->get()
+            ->map(function (object $user) {
+                return [
+                    'id' => (int)$user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ];
+            });
     }
 }
